@@ -1,4 +1,4 @@
-package com.example.expandable.listview;
+package com.expandable.listview;
 
 import android.app.Activity;
 import android.os.Bundle;
