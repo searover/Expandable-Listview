@@ -50,4 +50,12 @@ public class Node {
     public void setChildren(List<Node> children) {this.children = children;}
     public Object getAdditional() {return additional;}
     public void setAdditional(Object additional) {this.additional = additional;}
+
+    /**
+     * 判断是否为第一层节点
+     * @return
+     */
+    public boolean isTopLevelNode(){
+        return this.parent == null;
+    }
 }

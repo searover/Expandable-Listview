@@ -10,7 +10,7 @@ import android.widget.BaseAdapter;
  * 可伸缩ListView适配器
  *
  */
-public class TreeListViewAdapter<T> extends BaseAdapter {
+public class ExpandListViewAdapter<T> extends BaseAdapter {
 
     protected Context mContext;
 

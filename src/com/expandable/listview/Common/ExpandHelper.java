@@ -1,9 +1,9 @@
 package com.expandable.listview.Common;
 
 import com.expandable.listview.bean.Node;
-import com.expandable.listview.bean.TreeNodeId;
-import com.expandable.listview.bean.TreeNodeName;
-import com.expandable.listview.bean.TreeNodeParentId;
+import com.expandable.listview.bean.NodeId;
+import com.expandable.listview.bean.NodeName;
+import com.expandable.listview.bean.NodeParentId;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ import java.util.List;
  * Created by Baiguang on 2015/1/19.
  * 将任意数据集合转换成Node集合的帮助类
  */
-public class TreeHelper {
+public class ExpandHelper {
     public static <T> List<Node> getSortedNodes(List<T> data, int defaultExpendLevel){
         return null;
     }
@@ -45,15 +45,15 @@ public class TreeHelper {
             Class<? extends Object> clazz = t.getClass();
             Field[] declaredFields = clazz.getDeclaredFields();
             for (Field field : declaredFields){
-                if(field.getAnnotation(TreeNodeId.class) != null){
+                if(field.getAnnotation(NodeId.class) != null){
                     field.setAccessible(true);
                     id = field.getInt(t);
                 }
-                if(field.getAnnotation(TreeNodeName.class) != null){
+                if(field.getAnnotation(NodeName.class) != null){
                     field.setAccessible(true);
                     name = (String) field.get(t);
                 }
-                if(field.getAnnotation(TreeNodeParentId.class) != null){
+                if(field.getAnnotation(NodeParentId.class) != null){
                     field.setAccessible(true);
                     parentId = field.getInt(t);
                 }
@@ -80,5 +80,20 @@ public class TreeHelper {
             }
         }
         return nodes;
+    }
+
+    /**
+     * 获取第一层节点集合
+     * @param data
+     * @return
+     */
+    private static List<Node> getTopLevelNodes(List<Node> data){
+        List<Node> roots = new ArrayList<Node>();
+        for (Node n : data){
+            if(n.isTopLevelNode()){
+                roots.add(n);
+            }
+        }
+        return roots;
     }
 }
