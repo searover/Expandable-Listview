@@ -26,6 +26,12 @@ public class Node {
     /** 当前节点附加的属性 */
     private Object additional;
 
+    public Node(int id, int parentId, String name) {
+        this.id = id;
+        this.parentId = parentId;
+        this.name = name;
+    }
+
     public int getId() {return id;}
     public void setId(int id) {this.id = id;}
     public int getParentId() {return parentId;}
