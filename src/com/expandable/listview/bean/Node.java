@@ -7,15 +7,24 @@ import java.util.List;
  * Created by Baiguang on 2015/1/15.
  */
 public class Node {
+    /** 节点ID */
     private int id;
+    /** 节点父ID */
     private int parentId;
+    /** 节点名称 */
     private String name;
+    /** 节点层级 */
     private int level;
+    /** 是否可伸缩 */
     private boolean expand;
+    /** 父节点 */
     private Node parent;
+    /** 是否处于选中状态 */
     private boolean selected;
+    /** 节点的孩子们 */
     private List<Node> children = new ArrayList<Node>();
-    private Object what;
+    /** 当前节点附加的属性 */
+    private Object additional;
 
     public int getId() {return id;}
     public void setId(int id) {this.id = id;}
@@ -33,6 +42,6 @@ public class Node {
     public void setSelected(boolean selected) {this.selected = selected;}
     public List<Node> getChildren() {return children;}
     public void setChildren(List<Node> children) {this.children = children;}
-    public Object getWhat() {return what;}
-    public void setWhat(Object what) {this.what = what;}
+    public Object getAdditional() {return additional;}
+    public void setAdditional(Object additional) {this.additional = additional;}
 }
