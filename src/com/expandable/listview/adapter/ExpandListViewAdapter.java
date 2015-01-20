@@ -4,7 +4,10 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.ListView;
+import com.expandable.listview.Common.ExpandHelper;
 import com.expandable.listview.bean.Node;
 
 import java.util.List;
@@ -32,6 +35,32 @@ public class ExpandListViewAdapter<T> extends BaseAdapter {
 
     public void setOnExpandNodeClickListener(OnExpandNodeClickListener listener){
         this.onExpandNodeClickListener = listener;
+    }
+
+    public ExpandListViewAdapter(ListView listView, Context context, List<T> data, int defaultExpandLevel)
+            throws IllegalAccessException {
+        mContext = context;
+        mAllNodes = ExpandHelper.getSortedNodes(data,defaultExpandLevel);
+        mVisibleNodes = ExpandHelper.filterVisibleNodes(mAllNodes);
+        mInflater = LayoutInflater.from(mContext);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                toggleExpand(position);
+                if(onExpandNodeClickListener != null){
+                    onExpandNodeClickListener.onClick(mVisibleNodes.get(position),mVisibleNodes,view,position);
+                }
+            }
+        });
+    }
+
+    public void toggleExpand(int position){
+        Node node = mVisibleNodes.get(position);
+        if(node != null && !node.isLeaft()){
+            node.setExpand(!node.isExpand());
+            mVisibleNodes = ExpandHelper.filterVisibleNodes(mAllNodes);
+            notifyDataSetChanged();
+        }
     }
 
     @Override
