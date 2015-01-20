@@ -96,4 +96,24 @@ public class ExpandHelper {
         }
         return roots;
     }
+
+    /**
+     * 递归添加节点
+     * @param nodes
+     * @param node
+     * @param defaultExpandLevel
+     * @param currentLevel
+     */
+    private static void addNode(List<Node> nodes, Node node, int defaultExpandLevel, int currentLevel){
+        nodes.add(node);
+        if(defaultExpandLevel >= currentLevel){
+            node.setExpand(true);
+        }
+        if(node.isLeaft()){
+            return;
+        }
+        for (int i = 0; i < node.getChildren().size(); i ++){
+            addNode(nodes,node.getChildren().get(i),defaultExpandLevel,currentLevel + 1);
+        }
+    }
 }

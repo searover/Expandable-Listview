@@ -58,4 +58,12 @@ public class Node {
     public boolean isTopLevelNode(){
         return this.parent == null;
     }
+
+    /**
+     * 判断当前节点是否是叶子节点
+     * @return
+     */
+    public boolean isLeaft(){
+        return getChildren().size() == 0;
+    }
 }
