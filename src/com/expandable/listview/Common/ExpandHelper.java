@@ -14,16 +14,55 @@ import java.util.List;
  * 将任意数据集合转换成Node集合的帮助类
  */
 public class ExpandHelper {
-    public static <T> List<Node> getSortedNodes(List<T> data, int defaultExpendLevel){
-        return null;
+
+    /**
+     * 当传入的集合转换成Nodes集合，并按照层级排序
+     * @param data
+     * @param defaultExpendLevel
+     * @param <T>
+     * @return
+     * @throws IllegalAccessException
+     */
+    public static <T> List<Node> getSortedNodes(List<T> data, int defaultExpendLevel)
+            throws IllegalAccessException {
+        List<Node> sortedNodes = new ArrayList<Node>();
+        List<Node> nodes = convertDataToNodes(data);
+        List<Node> topLevelNodes = getTopLevelNodes(nodes);
+        for (Node node : topLevelNodes){
+            addNode(sortedNodes,node,defaultExpendLevel,1);
+        }
+        return sortedNodes;
     }
 
+    /**
+     * 过滤筛选出所有可见状态的Nodes
+     * @param nodes
+     * @return
+     */
     public static List<Node> filterVisibleNodes(List<Node> nodes){
-        return null;
+        List<Node> visibleNodes = new ArrayList<Node>();
+        for (Node node : nodes){
+            // 如果当前节点为顶层节点，或 其父节点是展开状态，则当前节点可见
+            if(node.isTopLevelNode() || node.getParent().isExpand()){
+                visibleNodes.add(node);
+            }
+        }
+        return nodes;
     }
 
+    /**
+     * 重置Node状态，将选中状态置为false，展开状态置为false
+     * @param nodes
+     * @return
+     */
     public static List<Node> resetNodesStatus(List<Node> nodes){
-        return null;
+        for (Node node : nodes){
+            node.setSelected(false);
+            if(node.getLevel() > 1){
+                node.setExpand(false);
+            }
+        }
+        return nodes;
     }
 
     /**
