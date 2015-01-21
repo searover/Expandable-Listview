@@ -10,6 +10,7 @@ import java.util.List;
 
 /**
  * Created by Baiguang on 2015/1/21.
+ * 实现 ExpandListViewAdapter
  */
 public class SimpleExpandListViewAdapter<T> extends ExpandListViewAdapter<T> {
     /**
@@ -26,6 +27,15 @@ public class SimpleExpandListViewAdapter<T> extends ExpandListViewAdapter<T> {
         super(listView, context, data, defaultExpandLevel);
     }
 
+    /**
+     * 创建Listview Item 的view,
+     * 要做到为不同层级的item指定不同的view，需要在该方法里判断Node层级
+     * @param node
+     * @param position
+     * @param convertView
+     * @param parent
+     * @return
+     */
     @Override
     public View getConvertView(Node node, int position, View convertView, ViewGroup parent) {
         return null;
