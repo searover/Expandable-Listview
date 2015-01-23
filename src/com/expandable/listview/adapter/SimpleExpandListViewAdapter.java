@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
+import com.expandable.listview.R;
 import com.expandable.listview.bean.Node;
 
 import java.util.List;
@@ -40,12 +42,21 @@ public class SimpleExpandListViewAdapter<T> extends ExpandListViewAdapter<T> {
     public View getConvertView(Node node, int position, View convertView, ViewGroup parent) {
         switch (node.getLevel()){
             case 0:
+                convertView = mInflater.inflate(R.layout.lilst_item_first,null);
+                TextView tv = (TextView) convertView.findViewById(R.id.textView);
+                tv.setText(node.getName());
                 break;
             case 1:
+                convertView = mInflater.inflate(R.layout.list_item_second,null);
+                tv = (TextView) convertView.findViewById(R.id.textView);
+                tv.setText(node.getName());
                 break;
             case 2:
+                convertView = mInflater.inflate(R.layout.list_item_third,null);
+                tv = (TextView) convertView.findViewById(R.id.textView);
+                tv.setText(node.getName());
                 break;
         }
-        return null;
+        return convertView;
     }
 }
