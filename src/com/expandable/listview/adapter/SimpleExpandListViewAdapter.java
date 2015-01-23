@@ -38,6 +38,14 @@ public class SimpleExpandListViewAdapter<T> extends ExpandListViewAdapter<T> {
      */
     @Override
     public View getConvertView(Node node, int position, View convertView, ViewGroup parent) {
+        switch (node.getLevel()){
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+        }
         return null;
     }
 }
