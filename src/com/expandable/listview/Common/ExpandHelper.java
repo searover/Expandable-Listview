@@ -103,9 +103,12 @@ public class ExpandHelper {
             // 新建Node对象，并将其加入到Node集合
             nodes.add(new Node(id,parentId,name));
         }
-        // 遍历Node集合，设置全集中元素间的父子关系
+        // 遍历Node集合，设置元素间的父子关系
         for (int i = 0; i < nodes.size(); i ++){
             Node n = nodes.get(i);
+            if(n.getParentId() == 0){
+                n.setLevel(1);
+            }
             for (int j = i + 1; j < nodes.size(); j ++){
                 Node m = nodes.get(j);
                 if(m.getParentId() == n.getId()){
@@ -147,6 +150,9 @@ public class ExpandHelper {
         nodes.add(node);
         if(defaultExpandLevel >= currentLevel){
             node.setExpand(true);
+        }
+        if(node.getLevel() != 1){
+            node.setLevel(node.getParent().getLevel() + 1);
         }
         if(node.isLeaft()){
             return;
