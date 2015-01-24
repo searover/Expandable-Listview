@@ -20,6 +20,8 @@ public class Staff {
     @NodeParentId
     private int superiorId;
 
+    private String position;
+
     /** 年龄 */
     private int age;
 
@@ -59,6 +61,14 @@ public class Staff {
 
     public void setSuperiorId(int superiorId) {
         this.superiorId = superiorId;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
     }
 
     public int getAge() {
