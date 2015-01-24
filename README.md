@@ -1,3 +1,2 @@
 # Expandable-Listview
-android listview 扩展，支持父子关系数据结构，可折叠，伸展
-支持无限的父子层级关系
+通过扩展 ListView 的 Adapter，实现 ListView 显示层级关系的数据结构
