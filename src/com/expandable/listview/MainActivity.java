@@ -31,7 +31,7 @@ public class MainActivity extends Activity {
                 @Override
                 public void onClick(Node node, List<Node> visibleNodes, View view, int position) {
                     if(node.isLeaft()){
-                        // ...
+                        Toast.makeText(MainActivity.this,node.getName(),Toast.LENGTH_LONG);
                     }
                 }
             });
