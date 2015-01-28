@@ -17,6 +17,8 @@ public class MainActivity extends Activity {
 
     private ListView mListView;
 
+    private ExpandListViewAdapter mAdapter;
+
     /**
      * Called when the activity is first created.
      */
@@ -26,16 +28,20 @@ public class MainActivity extends Activity {
         setContentView(R.layout.main);
         mListView = (ListView) findViewById(R.id.list_view);
         try {
-            StaffListViewAdapter adapter = new StaffListViewAdapter(mListView,this,getStaffList(),1);
-            adapter.setOnExpandNodeClickListener(new ExpandListViewAdapter.OnExpandNodeClickListener() {
+            mAdapter = new StaffListViewAdapter(mListView,this,getStaffList(),1);
+            mAdapter.setOnExpandNodeClickListener(new ExpandListViewAdapter.OnExpandNodeClickListener() {
                 @Override
                 public void onClick(Node node, List<Node> visibleNodes, View view, int position) {
                     if(node.isLeaft()){
-                        Toast.makeText(MainActivity.this,node.getName(),Toast.LENGTH_LONG).show();
+                        for (Node n : visibleNodes){
+                            n.setSelected(false);
+                        }
+                        node.setSelected(true);
                     }
+                    mAdapter.notifyDataSetChanged();
                 }
             });
-            mListView.setAdapter(adapter);
+            mListView.setAdapter(mAdapter);
         } catch (IllegalAccessException e) {
             Toast.makeText(this,"实例化适配器失败",Toast.LENGTH_LONG).show();
         }
