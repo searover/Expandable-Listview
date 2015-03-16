@@ -9,3 +9,4 @@ it with this extension.A sample of this extension usage has include in this repo
 ![image](https://github.com/Alex987965/Expandable-Listview/blob/master/screenshots/screenshot_2.png)
 ![image](https://github.com/Alex987965/Expandable-Listview/blob/master/screenshots/screenshot_3.png)
 
+Supported by : http://blog.csdn.net/lmj623565791/article/details/40212367
